@@ -1,4 +1,4 @@
-п»ї//#include <iostream>
+//#include <iostream>
 //#include <cassert>
 //#include<string>
 //using namespace std;
@@ -229,7 +229,7 @@
 ////	}
 ////	/*void sort()
 ////	{
-////		for (int k = size вЂ” 1; k > 0; k--)
+////		for (int k = size — 1; k > 0; k--)
 ////			for (int j = 0; j < k; j++)
 ////				if (arr[j] > arr[j + 1])
 ////					swap(arr[j], arr[j + 1]);
@@ -314,9 +314,9 @@
 ////template<template<class> class T, class T1>
 ////struct Some
 ////{
-////	T<T1> data; // СЃРѕР·РґР°РµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ data,
-////	// С‚РёРїРѕРј РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ С€Р°Р±Р»РѕРЅ РєР»Р°СЃСЃР° T,
-////	// РїСЂРёРЅРёРјР°СЋС‰РёР№ РїР°СЂР°РјРµС‚СЂ-С‚РёРї T1
+////	T<T1> data; // создается переменная data,
+////	// типом которой будет шаблон класса T,
+////	// принимающий параметр-тип T1
 ////	void Add(T1 item)
 ////	{
 ////		data.Add(item);
@@ -329,19 +329,19 @@
 ////};
 ////int main()
 ////{
-////	// СЃС‚СЂСѓРєС‚СѓСЂР° Point СЃ С†РµР»С‹РјРё x,y
+////	// структура Point с целыми x,y
 ////	Some<Point, int> intPoint;
 ////	intPoint.data.x = 1;
 ////	intPoint.data.y = 2;
 ////	cout << "Some: struct Point with int x, y : ";
 ////	intPoint.display();
-////	// СЃС‚СЂСѓРєС‚СѓСЂР° Point СЃ РїР»Р°РІР°СЋС‰РёРјРё x,y
+////	// структура Point с плавающими x,y
 ////	Some<Point, double> doublePoint;
 ////	doublePoint.data.x = 10.01;
 ////	doublePoint.data.y = 0.02;
 ////	cout << "Some: struct Point with double x,y : ";
 ////	doublePoint.display();
-////	// РјР°СЃСЃРёРІ (РІРµРєС‚РѕСЂ) С†РµР»С‹С…
+////	// массив (вектор) целых
 ////	Some<Array, int> intArray;
 ////	intArray.Add(1);
 ////	intArray.Add(3);
@@ -458,108 +458,27 @@
 ////	_getch();
 ////	return 0;
 ////}
-//// les05_08
+// les05_08a
+
 //
-//#include <iostream>
-//#include <vector>
-//#include <conio.h>
-//using namespace std;
-//
-//template <class T, int height, int width>
-//class Matrix
-//{
-//    T m[height][width];
-//public:
-//    const auto& operator()(int j, int i) const
-//    {
-//        if (j < 0 || j >= height
-//            || i < 0 || i >= width)
-//        {
-//            throw "Matrix index error!";
-//        }
-//
-//        return m[j][i];
-//    }
-//
-//    auto& operator()(int j, int i)
-//    {
-//        if (j < 0 || j >= height
-//            || i < 0 || i >= width)
-//        {
-//            throw "Matrix index error!";
-//        }
-//
-//        return m[j][i];
-//    }
-//
-//    auto getMin()
-//    {
-//        auto min = m[0][0];
-//        for (int j = 0; j < height; j++)
-//        {
-//            for (int i = 0; i < width; i++)
-//            {
-//                if (m[j][i] < min)
-//                {
-//                    min = m[j][i];
-//                }
-//            }
-//        }
-//        return min;
-//    }
-//
-//    auto getMax()
-//    {
-//        auto max = m[0][0];
-//        for (int j = 0; j < height; j++)
-//        {
-//            for (int i = 0; i < width; i++)
-//            {
-//                if (m[j][i] > max)
-//                {
-//                    max = m[j][i];
-//                }
-//            }
-//        }
-//        return max;
-//    }
-//};
-//
-//int main()
-//{
-//    const int height = 2;
-//    const int width = 3;
-//
-//    Matrix<int, height, width> intMatrix;
-//    intMatrix(0, 0) = 5;
-//    intMatrix(0, 1) = 1;
-//    intMatrix(0, 2) = 9;
-//    intMatrix(1, 0) = 15;
-//    intMatrix(1, 1) = 11;
-//    intMatrix(1, 2) = 19;
-//    cout << "intMatrix min: " << intMatrix.getMin() << endl;
-//    cout << "intMatrix max: " << intMatrix.getMax() << endl << endl;
-//
-//    Matrix<string, height, width> strMatrix;
-//    strMatrix(0, 0) = "five";
-//    strMatrix(0, 1) = "one";
-//    strMatrix(0, 2) = "nine";
-//    strMatrix(1, 0) = "fifteen";
-//    strMatrix(1, 1) = "eleven";
-//    strMatrix(1, 2) = "nineteen";
-//    cout << "strMatrix min: " << strMatrix.getMin() << endl;
-//    cout << "strMatrix max: " << strMatrix.getMax() << endl << endl;
-//
-//    Matrix<const char*, height, width> txtMatrix;
-//    txtMatrix(0, 0) = "five";
-//    txtMatrix(0, 1) = "one";
-//    txtMatrix(0, 2) = "nine";
-//    txtMatrix(1, 0) = "fifteen";
-//    txtMatrix(1, 1) = "eleven";
-//    txtMatrix(1, 2) = "nineteen";
-//    cout << "txtMatrix min: " << txtMatrix.getMin() << endl;
-//    cout << "txtMatrix max: " << txtMatrix.getMax() << endl << endl;
-//
-//    _getch();
-//}
-//
+#include<iostream>
+using namespace std;
+template<typename T,typename T1>
+struct Point
+{
+	T x;
+	T1 y;
+
+	void print()
+	{
+		cout << x << "," << y << endl;
+	}
+};
+int main()
+{
+	Point<double, int> p{ 2.5,5 };
+	Point<char, int> p1{ 'a' ,6};
+	p1.print();
+	p.print();
+	return 0;
+}
