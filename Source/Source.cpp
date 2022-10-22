@@ -170,116 +170,184 @@ using namespace std;
 //    return 0;
 //}
 //
+//#include <iostream>
+//#include <conio.h>
+//using namespace std;
+//void stopProgram(string message)
+//{
+//	cout << message << endl;
+//	cout << "Press any key to exit program" << endl;
+//	_getch();
+//	exit(1);
+//}
+//template<class T>
+//class Array
+//{
+//	static const size_t size{ 5 };
+//	T arr[size];
+//public:
+//	Array()
+//	{
+//		for (int i = 0; i < size; i++)
+//		{
+//			arr[i] = T();
+//		}
+//	}
+//	int getSize() const
+//	{
+//		return size;
+//	}
+//	T getItem(size_t index) const
+//	{
+//		if (index >= 0 && index < size)
+//		{
+//			return arr[index];
+//		}
+//		else
+//		{
+//			stopProgram("Index is out of range!");
+//		}
+//	}
+//	void setItem(size_t index, T value)
+//	{
+//		if (index >= 0 && index < size)
+//		{
+//			arr[index] = value;
+//		}
+//		else
+//		{
+//			stopProgram("Index is out of range!");
+//		}
+//	}
+//	void display()
+//	{
+//		for (int i = 0; i < size; i++)
+//		{
+//			cout << arr[i] << " ";
+//		}
+//		cout << endl;
+//	}
+//	/*void sort()
+//	{
+//		for (int k = size — 1; k > 0; k--)
+//			for (int j = 0; j < k; j++)
+//				if (arr[j] > arr[j + 1])
+//					swap(arr[j], arr[j + 1]);
+//		
+//	}*/
+//	void sort()
+//	{
+//		for (int k = size - 1; k > 0; k--)
+//		{
+//			for (int j = 0; j < k; j++)
+//			{
+//				if (arr[j] > arr[j + 1])
+//				{
+//					swap(arr[j], arr[j + 1]);
+//				}
+//			}
+//		}
+//	}
+//};
+//int main()
+//{
+//	cout << "Class Array" << endl << endl;
+//	Array<int> intArray;
+//	cout << "int Array initialization:" << endl;
+//	intArray.display();
+//	int size = intArray.getSize();
+//	for (int i = size; i > 0; i--)
+//	{
+//		intArray.setItem(size - i, i);
+//	}
+//	cout << endl << "int Array after assignment:" << endl;
+//	intArray.display();
+//	intArray.sort();
+//	cout << endl << "int Array after ordering:" << endl;
+//	intArray.display();
+//	cout << endl;
+//	Array<string> strArray;
+//	cout << "str Array initialization:" << endl;
+//	strArray.display();
+//	strArray.setItem(0, "two");
+//	strArray.setItem(1, "seven");
+//	strArray.setItem(2, "zero");
+//	strArray.setItem(3, "four");
+//	strArray.setItem(4, "one");
+//	cout << endl << "str Array after assignment:" << endl;
+//	strArray.display();
+//	strArray.sort();
+//	cout << endl << "str Array after ordering:" << endl;
+//	strArray.display();
+//	cout << endl << "Press any key to exit program" << endl;
+//	_getch();
+//	return 0;
+//}
 #include <iostream>
+#include <vector>
 #include <conio.h>
 using namespace std;
-void stopProgram(string message)
-{
-	cout << message << endl;
-	cout << "Press any key to exit program" << endl;
-	_getch();
-	exit(1);
-}
 template<class T>
-class Array
+struct Point
 {
-	static const size_t size{ 5 };
-	T arr[size];
-public:
-	Array()
+	T x;
+	T y;
+	void display()
 	{
-		for (int i = 0; i < size; i++)
-		{
-			arr[i] = T();
-		}
+		cout << "(" << x << "," << y << ")";
 	}
-	int getSize() const
+};
+template<class T>
+struct Array
+{
+	vector<T> data;
+	void Add(T item)
 	{
-		return size;
-	}
-	T getItem(size_t index) const
-	{
-		if (index >= 0 && index < size)
-		{
-			return arr[index];
-		}
-		else
-		{
-			stopProgram("Index is out of range!");
-		}
-	}
-	void setItem(size_t index, T value)
-	{
-		if (index >= 0 && index < size)
-		{
-			arr[index] = value;
-		}
-		else
-		{
-			stopProgram("Index is out of range!");
-		}
+		data.push_back(item);
 	}
 	void display()
 	{
-		for (int i = 0; i < size; i++)
-		{
-			cout << arr[i] << " ";
-		}
-		cout << endl;
+		for (auto var : data)//
+			cout << var << " ";
 	}
-	/*void sort()
+};
+template<template<class> class T, class T1>
+struct Some
+{
+	T<T1> data; // создается переменная data,
+	// типом которой будет шаблон класса T,
+	// принимающий параметр-тип T1
+	void Add(T1 item)
 	{
-		for (int k = size — 1; k > 0; k--)
-			for (int j = 0; j < k; j++)
-				if (arr[j] > arr[j + 1])
-					swap(arr[j], arr[j + 1]);
-		
-	}*/
-	void sort()
+		data.Add(item);
+	}
+	void display()
 	{
-		for (int k = size - 1; k > 0; k--)
-		{
-			for (int j = 0; j < k; j++)
-			{
-				if (arr[j] > arr[j + 1])
-				{
-					swap(arr[j], arr[j + 1]);
-				}
-			}
-		}
+		data.display();
+		cout << endl;
 	}
 };
 int main()
 {
-	cout << "Class Array" << endl << endl;
-	Array<int> intArray;
-	cout << "int Array initialization:" << endl;
+	// структура Point с целыми x,y
+	Some<Point, int> intPoint;
+	intPoint.data.x = 1;
+	intPoint.data.y = 2;
+	cout << "Some: struct Point with int x, y : ";
+	intPoint.display();
+	// структура Point с плавающими x,y
+	Some<Point, double> doublePoint;
+	doublePoint.data.x = 10.01;
+	doublePoint.data.y = 0.02;
+	cout << "Some: struct Point with double x,y : ";
+	doublePoint.display();
+	// массив (вектор) целых
+	Some<Array, int> intArray;
+	intArray.Add(1);
+	intArray.Add(3);
+	intArray.Add(5);
+	cout << "Some: array (vector) with int items: ";
 	intArray.display();
-	int size = intArray.getSize();
-	for (int i = size; i > 0; i--)
-	{
-		intArray.setItem(size - i, i);
-	}
-	cout << endl << "int Array after assignment:" << endl;
-	intArray.display();
-	intArray.sort();
-	cout << endl << "int Array after ordering:" << endl;
-	intArray.display();
-	cout << endl;
-	Array<string> strArray;
-	cout << "str Array initialization:" << endl;
-	strArray.display();
-	strArray.setItem(0, "two");
-	strArray.setItem(1, "seven");
-	strArray.setItem(2, "zero");
-	strArray.setItem(3, "four");
-	strArray.setItem(4, "one");
-	cout << endl << "str Array after assignment:" << endl;
-	strArray.display();
-	strArray.sort();
-	cout << endl << "str Array after ordering:" << endl;
-	strArray.display();
-	cout << endl << "Press any key to exit program" << endl;
 	_getch();
 	return 0;
 }
