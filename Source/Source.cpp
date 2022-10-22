@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <cassert>
 #include<string>
 using namespace std;
@@ -229,7 +229,7 @@ using namespace std;
 //	}
 //	/*void sort()
 //	{
-//		for (int k = size — 1; k > 0; k--)
+//		for (int k = size вЂ” 1; k > 0; k--)
 //			for (int j = 0; j < k; j++)
 //				if (arr[j] > arr[j + 1])
 //					swap(arr[j], arr[j + 1]);
@@ -314,9 +314,9 @@ struct Array
 template<template<class> class T, class T1>
 struct Some
 {
-	T<T1> data; // создается переменная data,
-	// типом которой будет шаблон класса T,
-	// принимающий параметр-тип T1
+	T<T1> data; // СЃРѕР·РґР°РµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ data,
+	// С‚РёРїРѕРј РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµС‚ С€Р°Р±Р»РѕРЅ РєР»Р°СЃСЃР° T,
+	// РїСЂРёРЅРёРјР°СЋС‰РёР№ РїР°СЂР°РјРµС‚СЂ-С‚РёРї T1
 	void Add(T1 item)
 	{
 		data.Add(item);
@@ -329,19 +329,19 @@ struct Some
 };
 int main()
 {
-	// структура Point с целыми x,y
+	// СЃС‚СЂСѓРєС‚СѓСЂР° Point СЃ С†РµР»С‹РјРё x,y
 	Some<Point, int> intPoint;
 	intPoint.data.x = 1;
 	intPoint.data.y = 2;
 	cout << "Some: struct Point with int x, y : ";
 	intPoint.display();
-	// структура Point с плавающими x,y
+	// СЃС‚СЂСѓРєС‚СѓСЂР° Point СЃ РїР»Р°РІР°СЋС‰РёРјРё x,y
 	Some<Point, double> doublePoint;
 	doublePoint.data.x = 10.01;
 	doublePoint.data.y = 0.02;
 	cout << "Some: struct Point with double x,y : ";
 	doublePoint.display();
-	// массив (вектор) целых
+	// РјР°СЃСЃРёРІ (РІРµРєС‚РѕСЂ) С†РµР»С‹С…
 	Some<Array, int> intArray;
 	intArray.Add(1);
 	intArray.Add(3);
