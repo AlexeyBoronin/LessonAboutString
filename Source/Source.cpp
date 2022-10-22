@@ -283,71 +283,178 @@ using namespace std;
 //	_getch();
 //	return 0;
 //}
+//#include <iostream>
+//#include <vector>
+//#include <conio.h>
+//using namespace std;
+//template<class T>
+//struct Point
+//{
+//	T x;
+//	T y;
+//	void display()
+//	{
+//		cout << "(" << x << "," << y << ")";
+//	}
+//};
+//template<class T>
+//struct Array
+//{
+//	vector<T> data;
+//	void Add(T item)
+//	{
+//		data.push_back(item);
+//	}
+//	void display()
+//	{
+//		for (auto var : data)//
+//			cout << var << " ";
+//	}
+//};
+//template<template<class> class T, class T1>
+//struct Some
+//{
+//	T<T1> data; // создается переменная data,
+//	// типом которой будет шаблон класса T,
+//	// принимающий параметр-тип T1
+//	void Add(T1 item)
+//	{
+//		data.Add(item);
+//	}
+//	void display()
+//	{
+//		data.display();
+//		cout << endl;
+//	}
+//};
+//int main()
+//{
+//	// структура Point с целыми x,y
+//	Some<Point, int> intPoint;
+//	intPoint.data.x = 1;
+//	intPoint.data.y = 2;
+//	cout << "Some: struct Point with int x, y : ";
+//	intPoint.display();
+//	// структура Point с плавающими x,y
+//	Some<Point, double> doublePoint;
+//	doublePoint.data.x = 10.01;
+//	doublePoint.data.y = 0.02;
+//	cout << "Some: struct Point with double x,y : ";
+//	doublePoint.display();
+//	// массив (вектор) целых
+//	Some<Array, int> intArray;
+//	intArray.Add(1);
+//	intArray.Add(3);
+//	intArray.Add(5);
+//	cout << "Some: array (vector) with int items: ";
+//	intArray.display();
+//	_getch();
+//	return 0;
+//}
 #include <iostream>
 #include <vector>
 #include <conio.h>
+#include<string>
 using namespace std;
 template<class T>
-struct Point
+class List
 {
-	T x;
-	T y;
-	void display()
+	vector<T> list;
+public:
+	void add(T item)
 	{
-		cout << "(" << x << "," << y << ")";
+		list.push_back(item);
+	}
+	void remove(int index)
+	{
+		list.erase(list.begin() + index);
+	}
+	auto getMin()
+	{
+		auto pMin = list.begin();
+		for (auto it = list.begin(); it < list.end(); it++)
+		{
+			if (*it < *pMin)
+			{
+				pMin = it;
+			}
+		}
+		return *pMin;
+	}
+	auto getMax()
+	{
+		auto pMax = list.begin();
+		for (auto it = list.begin(); it < list.end(); it++)
+		{
+			if (*it > *pMax)
+			{
+				pMax = it;
+			}
+		}
+		return *pMax;
 	}
 };
-template<class T>
-struct Array
+template<>
+class List<const char*>
 {
-	vector<T> data;
-	void Add(T item)
+	vector<const char*> list;
+public:
+	void add(const char* item)
 	{
-		data.push_back(item);
+		list.push_back(item);
 	}
-	void display()
+	void remove(int index)
 	{
-		for (auto var : data)//
-			cout << var << " ";
+		list.erase(list.begin() + index);
 	}
-};
-template<template<class> class T, class T1>
-struct Some
-{
-	T<T1> data; // создается переменная data,
-	// типом которой будет шаблон класса T,
-	// принимающий параметр-тип T1
-	void Add(T1 item)
+	auto getMin()
 	{
-		data.Add(item);
+		auto pMin = list.begin();
+		for (auto it = list.begin(); it < list.end(); it++)
+		{
+			if (strcmp(*it, *pMin) < 0)
+			{
+				pMin = it;
+			}
+		}
+		return *pMin;
 	}
-	void display()
+	auto getMax()
 	{
-		data.display();
-		cout << endl;
+		auto pMax = list.begin();
+		for (auto it = list.begin(); it < list.end(); it++)
+		{
+			if (strcmp(*it, *pMax) > 0)
+			{
+				pMax = it;
+			}
+		}
+		return *pMax;
 	}
 };
 int main()
 {
-	// структура Point с целыми x,y
-	Some<Point, int> intPoint;
-	intPoint.data.x = 1;
-	intPoint.data.y = 2;
-	cout << "Some: struct Point with int x, y : ";
-	intPoint.display();
-	// структура Point с плавающими x,y
-	Some<Point, double> doublePoint;
-	doublePoint.data.x = 10.01;
-	doublePoint.data.y = 0.02;
-	cout << "Some: struct Point with double x,y : ";
-	doublePoint.display();
-	// массив (вектор) целых
-	Some<Array, int> intArray;
-	intArray.Add(1);
-	intArray.Add(3);
-	intArray.Add(5);
-	cout << "Some: array (vector) with int items: ";
-	intArray.display();
+	List<int> intList;
+	intList.add(4);
+	intList.add(5);
+	intList.add(2);
+	intList.add(3);
+	cout << "intList min: " << intList.getMin() << endl;
+	cout << "intList max: " << intList.getMax() << endl<< endl;
+	List<string> strList;
+	strList.add("four");
+	strList.add("five");
+	strList.add("two");
+	strList.add("three");
+	cout << "strList min: " << strList.getMin() << endl;
+	cout << "strList max: " << strList.getMax() << endl<< endl;
+	List<const char*> txtList;
+	txtList.add("four");
+	txtList.add("five");
+	txtList.add("two");
+	txtList.add("three");
+	cout << "txtList min: " << txtList.getMin() << endl;
+	cout << "txtList max: " << txtList.getMax() << endl<< endl;
 	_getch();
 	return 0;
 }
